@@ -67,14 +67,19 @@ function App() {
     });
   }
 
+  const ctxValue = {
+    items: shoppingCart.items,
+    addItemToCart: handleAddItemToCart
+  }
+
   return (
-    <CartContext value={{items: [] }}> /* use CartContext.Provider for react 18 or older */
+    <CartContext value={ctxValue}> /* use CartContext.Provider for react 18 or older */
       <Header
         cart={shoppingCart}
         onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
       />
       <Shop>
-      {DUMMY_PRODUCTS.map((product) => (
+        {DUMMY_PRODUCTS.map((product) => (
           <li key={product.id}>
             <Product {...product} onAddToCart={handleAddItemToCart} />
           </li>
